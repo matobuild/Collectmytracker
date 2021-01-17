@@ -14,6 +14,7 @@
 		48C597BE25B200720090931B /* Collectmytracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48C597BC25B200720090931B /* Collectmytracker.xcdatamodeld */; };
 		48C597C025B200720090931B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48C597BF25B200720090931B /* Assets.xcassets */; };
 		48C597C325B200720090931B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C597C125B200720090931B /* LaunchScreen.storyboard */; };
+		48C597D725B204AA0090931B /* MainTrackerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C597D625B204AA0090931B /* MainTrackerController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		48C597BF25B200720090931B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48C597C225B200720090931B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48C597C425B200720090931B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48C597D625B204AA0090931B /* MainTrackerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTrackerController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +62,48 @@
 			children = (
 				48C597B325B200720090931B /* AppDelegate.swift */,
 				48C597B525B200720090931B /* SceneDelegate.swift */,
-				48C597B725B200720090931B /* ViewController.swift */,
-				48C597B925B200720090931B /* Main.storyboard */,
-				48C597BF25B200720090931B /* Assets.xcassets */,
-				48C597C125B200720090931B /* LaunchScreen.storyboard */,
+				48C597CE25B200CB0090931B /* Model */,
+				48C597CC25B200B80090931B /* Controller */,
+				48C597CB25B2009D0090931B /* View */,
+				48C597D025B201770090931B /* supporting file */,
 				48C597C425B200720090931B /* Info.plist */,
-				48C597BC25B200720090931B /* Collectmytracker.xcdatamodeld */,
 			);
 			path = Collectmytracker;
+			sourceTree = "<group>";
+		};
+		48C597CB25B2009D0090931B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				48C597B925B200720090931B /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		48C597CC25B200B80090931B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				48C597B725B200720090931B /* ViewController.swift */,
+				48C597D625B204AA0090931B /* MainTrackerController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		48C597CE25B200CB0090931B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				48C597BC25B200720090931B /* Collectmytracker.xcdatamodeld */,
+			);
+			name = Model;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		48C597D025B201770090931B /* supporting file */ = {
+			isa = PBXGroup;
+			children = (
+				48C597BF25B200720090931B /* Assets.xcassets */,
+				48C597C125B200720090931B /* LaunchScreen.storyboard */,
+			);
+			path = "supporting file";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +178,7 @@
 			files = (
 				48C597B825B200720090931B /* ViewController.swift in Sources */,
 				48C597BE25B200720090931B /* Collectmytracker.xcdatamodeld in Sources */,
+				48C597D725B204AA0090931B /* MainTrackerController.swift in Sources */,
 				48C597B425B200720090931B /* AppDelegate.swift in Sources */,
 				48C597B625B200720090931B /* SceneDelegate.swift in Sources */,
 			);
