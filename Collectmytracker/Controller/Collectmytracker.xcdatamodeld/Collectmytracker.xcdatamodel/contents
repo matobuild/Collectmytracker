@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Data" representedClassName=".Data" syncable="YES" codeGenerationType="class">
+        <attribute name="amount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="newRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tracker" inverseName="datas" inverseEntity="Tracker"/>
+    </entity>
     <entity name="Tracker" representedClassName=".Tracker" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String"/>
+        <relationship name="datas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Data" inverseName="newRelationship" inverseEntity="Data"/>
     </entity>
     <elements>
-        <element name="Tracker" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="Tracker" positionX="-501.5040283203125" positionY="-28.45477294921875" width="128" height="73"/>
+        <element name="Data" positionX="-277.9698486328125" positionY="-6.240142822265625" width="128" height="88"/>
     </elements>
 </model>
