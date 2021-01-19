@@ -34,20 +34,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFg-VV-hKf">
-                                                    <rect key="frame" x="43" y="53.5" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="online" translatesAutoresizingMaskIntoConstraints="NO" id="v3m-3Z-dWx">
+                                                    <rect key="frame" x="56.5" y="56.5" width="15" height="15"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="vFg-VV-hKf" firstAttribute="centerY" secondItem="WVj-rE-dlT" secondAttribute="centerY" id="3kv-HA-SDZ"/>
-                                                <constraint firstItem="vFg-VV-hKf" firstAttribute="centerX" secondItem="WVj-rE-dlT" secondAttribute="centerX" id="Olk-h0-4AM"/>
+                                                <constraint firstItem="v3m-3Z-dWx" firstAttribute="centerY" secondItem="WVj-rE-dlT" secondAttribute="centerY" id="3mC-HZ-Q7t"/>
+                                                <constraint firstItem="v3m-3Z-dWx" firstAttribute="centerX" secondItem="WVj-rE-dlT" secondAttribute="centerX" id="EOi-pK-HnY"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <outlet property="myLabel" destination="vFg-VV-hKf" id="cYA-KO-zLH"/>
+                                            <outlet property="myImage" destination="v3m-3Z-dWx" id="0aO-01-ZlL"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -56,13 +53,21 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="o17-nb-38e"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ST-pL-zoq">
+                                <rect key="frame" x="352" y="835" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="0B9-uh-Mqn" firstAttribute="bottom" secondItem="7ST-pL-zoq" secondAttribute="bottom" constant="6" id="KO0-gZ-Pfp"/>
                             <constraint firstItem="0B9-uh-Mqn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="SaJ-QJ-OiZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0B9-uh-Mqn" secondAttribute="trailing" id="Xf1-w3-Dui"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0B9-uh-Mqn" secondAttribute="bottom" id="kYg-in-cJW"/>
+                            <constraint firstItem="0B9-uh-Mqn" firstAttribute="trailing" secondItem="7ST-pL-zoq" secondAttribute="trailing" constant="20" id="mnt-pt-Y1d"/>
                             <constraint firstItem="0B9-uh-Mqn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="o1e-0b-eIb"/>
                         </constraints>
                     </view>
@@ -130,6 +135,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="online" width="15" height="15"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
