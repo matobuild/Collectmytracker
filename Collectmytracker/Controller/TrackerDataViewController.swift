@@ -23,8 +23,10 @@ class TrackerDataViewController: UIViewController {
     
     
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
-   
     var items = [0]
+    
+    
+    @IBOutlet weak var countLabel: UILabel!
     
     
     //MARK: - Model Manipulation Methods
@@ -61,7 +63,6 @@ class TrackerDataViewController: UIViewController {
 
 
 //MARK: - creating the grid
-
 extension TrackerDataViewController: UICollectionViewDataSource,UICollectionViewDelegate{
     
     // MARK: - UICollectionViewDataSource protocol
@@ -98,17 +99,20 @@ extension TrackerDataViewController: UICollectionViewDataSource,UICollectionView
         
         if indexPath.item == (items.count-1){
             items.append(items.last!+1)
+            counting()
 //            print(items)
             collectionView.reloadData()
         }else{
             //ask for confirmation before remvpve(need to do)
             items.remove(at: indexPath.item)
+            counting()
 //            print(items)
             collectionView.reloadData()
         }
-        
-        
-        
+    }
+    
+    func counting() {
+        countLabel.text = "Total : \(String(items.count-1))"
     }
     
 }
