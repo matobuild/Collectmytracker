@@ -11,7 +11,7 @@ import CoreData
 
 class TrackerDataViewController: UIViewController {
     
-    var itemArray = [Item]()
+    var itemsArray = [Item]()
     
     var selectedTracker : Tracker?{
         didSet{
@@ -20,43 +20,65 @@ class TrackerDataViewController: UIViewController {
     }
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    
-    
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
-    var items = [0]
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let startingItem = Item(context: self.context)
+        startingItem.amount = 0
+        itemsArray.append(startingItem)
+        saveItems()
+    }
     
+    @IBOutlet weak var grid: UICollectionView!
     @IBOutlet weak var countLabel: UILabel!
+    
+    
+    //MARK: - add new Items
+    
+    @IBAction func addCountPressed(_ sender: UIButton?) {
+        
+        let newItem = Item(context: self.context)
+        newItem.amount = 1 + itemsArray.last!.amount
+        newItem.parentTracker = self.selectedTracker
+        itemsArray.append(newItem)
+        saveItems()
+        totalCountingChange()
+    }
     
     
     //MARK: - Model Manipulation Methods
     func saveItems() {
         
         do {
-          try context.save()
+            try context.save()
         } catch {
-           print("Error saving context \(error)")
+            print("Error saving context \(error)")
         }
-        //    NEED TO RELOAD GRID
-//        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.grid.reloadData()
+        }
+        
     }
     func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil){
         
         let trackerPredicate = NSPredicate(format: "parentTracker.name MATCHES %@", selectedTracker!.name!)
         
-        if let additionalPredeicate = predicate {
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [trackerPredicate,additionalPredeicate])
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [trackerPredicate,additionalPredicate])
         }else{
             request.predicate = trackerPredicate
         }
         
         do{
-            itemArray = try context.fetch(request)
+            itemsArray = try context.fetch(request)
         }catch{
             print("Error fetching data from context \(error)")
         }
-        //    NEED TO RELOAD GRID
-        //    tableView.reloadData()
+        DispatchQueue.main.async {
+            self.grid.reloadData()
+        }
         
     }
 }
@@ -69,7 +91,8 @@ extension TrackerDataViewController: UICollectionViewDataSource,UICollectionView
     
     // tell the collection view how many cells to make
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
+        print("THE AMOUNT OF ITEMS IS \(itemsArray.count)")
+        return itemsArray.count
     }
     
     // make a cell for each cell index path
@@ -79,14 +102,14 @@ extension TrackerDataViewController: UICollectionViewDataSource,UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MyCollectionViewCell
         
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
-//        cell.myLabel.text = String(self.items[indexPath.row])// The row value is the same as the index of the desired text within the array.
-        if indexPath.item == items.count-1{
+        //        cell.myLabel.text = String(self.items[indexPath.row])// The row value is the same as the index of the desired text within the array.
+        if indexPath.item == itemsArray.count-1{
             cell.myImage.image = #imageLiteral(resourceName: "offline")
         }else{
             cell.myImage.image = #imageLiteral(resourceName: "online")
         }
-        print("idexpath. item is \(indexPath.item)")
-        print("items.count is \(items.count)")
+        //        print("idexpath. item is \(indexPath.item)")
+        //        print("items.count is \(items.count)")
         return cell
     }
     
@@ -96,23 +119,20 @@ extension TrackerDataViewController: UICollectionViewDataSource,UICollectionView
         // handle tap events
         
         print("You selected cell #\(indexPath.item)!")
-        
-        if indexPath.item == (items.count-1){
-            items.append(items.last!+1)
-            counting()
-//            print(items)
-            collectionView.reloadData()
+        print("items.count is \(itemsArray.count)")
+        if indexPath.item == (itemsArray.count-1){
+            addCountPressed(nil)
         }else{
-            //ask for confirmation before remvpve(need to do)
-            items.remove(at: indexPath.item)
-            counting()
-//            print(items)
-            collectionView.reloadData()
+            //ask for confirmation before remove(need to do)
+            itemsArray.remove(at: indexPath.item)
+            totalCountingChange()
+            grid.reloadData()
         }
     }
     
-    func counting() {
-        countLabel.text = "Total : \(String(items.count-1))"
+    func totalCountingChange() {
+        countLabel.text = "Total : \(String(itemsArray.count-1))"
+        
     }
     
 }

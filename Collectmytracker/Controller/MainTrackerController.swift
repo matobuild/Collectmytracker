@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class MainTrackerController: UITableViewController {
-
+    
     var tracker = [Tracker]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -19,7 +19,7 @@ class MainTrackerController: UITableViewController {
         
         loadTrackers()
     }
-
+    
     //MARK: - TableView Datasource Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,19 +37,6 @@ class MainTrackerController: UITableViewController {
         return cell
         
     }
-//    //MARK: - TableView Delegate Methods
-//
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "goToItems", sender: self)
-//    }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let destinationVC = segue.destination as! TodoListViewController
-//
-//        if let indexPath = tableView.indexPathForSelectedRow {
-//            destinationVC.selectedCategory = categories[indexPath.row]
-//        }
-//    }
     
     //MARK: - TableView Delegate Methods
     
@@ -57,14 +44,14 @@ class MainTrackerController: UITableViewController {
         performSegue(withIdentifier: "goToTrackerData", sender: self)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let destinationVC = segue.destination as! TrackerDataViewController
-//
-//        if let indexPath = tableView.indexPathForSelectedRow{
-//            destinationVC
-//        }
-//        		
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! TrackerDataViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow{
+            destinationVC.selectedTracker = tracker[indexPath.row]
+        }
+        
+    }
     
     //MARK: - Data Manipulation Methods
     
@@ -87,7 +74,7 @@ class MainTrackerController: UITableViewController {
         } catch {
             print("Error loading trackers \(error)")
         }
-       
+        
         tableView.reloadData()
         
     }

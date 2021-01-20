@@ -2,7 +2,6 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Item" representedClassName=".Item" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="parentTracker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tracker" inverseName="items" inverseEntity="Tracker"/>
     </entity>
     <entity name="Tracker" representedClassName=".Tracker" syncable="YES" codeGenerationType="class">
@@ -10,7 +9,7 @@
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="parentTracker" inverseEntity="Item"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-277.9698486328125" positionY="-6.240142822265625" width="128" height="88"/>
+        <element name="Item" positionX="-277.9698486328125" positionY="-6.240142822265625" width="128" height="73"/>
         <element name="Tracker" positionX="-501.5040283203125" positionY="-28.45477294921875" width="128" height="73"/>
     </elements>
 </model>
