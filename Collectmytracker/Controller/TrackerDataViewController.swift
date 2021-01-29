@@ -24,13 +24,12 @@ class TrackerDataViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        navigationItem.hidesBackButton = true
-
+        //        navigationItem.hidesBackButton = true
+        
         let startingItem = Item(context: self.context)
         startingItem.amount = 0
         itemsArray.append(startingItem)
         saveItems()
-        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +64,7 @@ class TrackerDataViewController: UIViewController {
         }
         DispatchQueue.main.async {
             self.grid.reloadData()
+            self.scrollToBottom()
         }
         
     }
@@ -85,7 +85,13 @@ class TrackerDataViewController: UIViewController {
         }
         DispatchQueue.main.async {
             self.grid.reloadData()
+            self.scrollToBottom()
         }
+        
+    }
+    func scrollToBottom() {
+        let lastIndex = IndexPath(item: self.itemsArray.count-1, section: 0)
+        self.grid.scrollToItem(at: lastIndex, at: .centeredVertically, animated: true)
         
     }
 }
@@ -143,6 +149,6 @@ extension TrackerDataViewController: UICollectionViewDataSource,UICollectionView
         countLabel.text = "Total : \(String(itemsArray.count-1))"
         
     }
-    
 }
+
 
