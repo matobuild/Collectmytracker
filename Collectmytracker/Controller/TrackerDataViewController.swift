@@ -117,7 +117,7 @@ extension TrackerDataViewController: UICollectionViewDataSource,UICollectionView
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         //        cell.myLabel.text = String(self.items[indexPath.row])// The row value is the same as the index of the desired text within the array.
         if indexPath.item == itemsArray.count-1{
-            cell.myImage.image = #imageLiteral(resourceName: "offline")
+            cell.myImage.image = #imageLiteral(resourceName: "Logo 500x500 px")
         }else{
             cell.myImage.image = #imageLiteral(resourceName: "online")
         }
