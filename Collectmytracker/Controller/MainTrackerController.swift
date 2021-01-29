@@ -16,8 +16,8 @@ class MainTrackerController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loadTrackers()
+                loadTrackers()
+        tableView.separatorStyle = .none
     }
     
     //MARK: - TableView Datasource Methods

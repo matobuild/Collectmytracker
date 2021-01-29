@@ -24,11 +24,18 @@ class TrackerDataViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        navigationItem.hidesBackButton = true
+
         let startingItem = Item(context: self.context)
         startingItem.amount = 0
         itemsArray.append(startingItem)
         saveItems()
+        
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        title = selectedTracker!.name
+        
     }
     
     @IBOutlet weak var grid: UICollectionView!
@@ -37,7 +44,7 @@ class TrackerDataViewController: UIViewController {
     
     //MARK: - add new Items
     
-    @IBAction func addCountPressed(_ sender: UIButton?) {
+    @IBAction func addCountPressed(_ sender: UIButton) {
         
         let newItem = Item(context: self.context)
         newItem.amount = 1 + itemsArray.last!.amount
@@ -121,7 +128,7 @@ extension TrackerDataViewController: UICollectionViewDataSource,UICollectionView
         print("You selected cell #\(indexPath.item)!")
         print("items.count is \(itemsArray.count)")
         if indexPath.item == (itemsArray.count-1){
-            addCountPressed(nil)
+            addCountPressed(UIButton())
         }else{
             //ask for confirmation before remove(need to do)
             itemsArray.remove(at: indexPath.item)
