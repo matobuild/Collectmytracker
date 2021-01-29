@@ -37,6 +37,23 @@ class MainTrackerController: UITableViewController {
         return cell
         
     }
+    //deleting rows
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            context.delete(tracker[indexPath.row])
+            tracker.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        
+            saveTrackers()
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }
+    
+   
+    
+    
     
     //MARK: - TableView Delegate Methods
     

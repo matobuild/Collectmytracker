@@ -131,10 +131,12 @@ extension TrackerDataViewController: UICollectionViewDataSource,UICollectionView
             addCountPressed(UIButton())
         }else{
             //ask for confirmation before remove(need to do)
+            context.delete(itemsArray[indexPath.item])
             itemsArray.remove(at: indexPath.item)
             totalCountingChange()
             grid.reloadData()
         }
+        saveItems()
     }
     
     func totalCountingChange() {
