@@ -10,7 +10,7 @@
 import UIKit
 import CoreData
 
-class TrackerDataViewController: UIViewController {
+class ItemDataViewController: UIViewController {
     
     var itemsArray = [Item]()
     
@@ -107,7 +107,7 @@ class TrackerDataViewController: UIViewController {
 
 
 //MARK: - creating the grid
-extension TrackerDataViewController: UICollectionViewDataSource,UICollectionViewDelegate{
+extension ItemDataViewController: UICollectionViewDataSource,UICollectionViewDelegate{
     
     // MARK: - UICollectionViewDataSource protocol
     
@@ -165,7 +165,7 @@ extension TrackerDataViewController: UICollectionViewDataSource,UICollectionView
 
 //MARK: - hide toolbar while scrolling
 
-extension TrackerDataViewController: UIScrollViewDelegate{
+extension ItemDataViewController: UIScrollViewDelegate{
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pan = scrollView.panGestureRecognizer

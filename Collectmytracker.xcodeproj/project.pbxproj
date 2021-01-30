@@ -11,7 +11,7 @@
 		488D8E2F25B43FD700AB19E7 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488D8E2E25B43FD700AB19E7 /* MyCollectionViewCell.swift */; };
 		48C597B425B200720090931B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C597B325B200720090931B /* AppDelegate.swift */; };
 		48C597B625B200720090931B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C597B525B200720090931B /* SceneDelegate.swift */; };
-		48C597B825B200720090931B /* TrackerDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C597B725B200720090931B /* TrackerDataViewController.swift */; };
+		48C597B825B200720090931B /* ItemDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C597B725B200720090931B /* ItemDataViewController.swift */; };
 		48C597BB25B200720090931B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C597B925B200720090931B /* Main.storyboard */; };
 		48C597BE25B200720090931B /* Collectmytracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48C597BC25B200720090931B /* Collectmytracker.xcdatamodeld */; };
 		48C597C025B200720090931B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48C597BF25B200720090931B /* Assets.xcassets */; };
@@ -25,7 +25,7 @@
 		48C597B025B200710090931B /* Collectmytracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collectmytracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C597B325B200720090931B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48C597B525B200720090931B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		48C597B725B200720090931B /* TrackerDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerDataViewController.swift; sourceTree = "<group>"; };
+		48C597B725B200720090931B /* ItemDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDataViewController.swift; sourceTree = "<group>"; };
 		48C597BA25B200720090931B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48C597BD25B200720090931B /* Collectmytracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Collectmytracker.xcdatamodel; sourceTree = "<group>"; };
 		48C597BF25B200720090931B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		48C597CC25B200B80090931B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				48C597B725B200720090931B /* TrackerDataViewController.swift */,
+				48C597B725B200720090931B /* ItemDataViewController.swift */,
 				4833092C25C4F7CA0069A01F /* longPressMenu.swift */,
 				488D8E2E25B43FD700AB19E7 /* MyCollectionViewCell.swift */,
 				48C597D625B204AA0090931B /* MainTrackerController.swift */,
@@ -182,7 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48C597B825B200720090931B /* TrackerDataViewController.swift in Sources */,
+				48C597B825B200720090931B /* ItemDataViewController.swift in Sources */,
 				48C597BE25B200720090931B /* Collectmytracker.xcdatamodeld in Sources */,
 				488D8E2F25B43FD700AB19E7 /* MyCollectionViewCell.swift in Sources */,
 				4833092D25C4F7CA0069A01F /* longPressMenu.swift in Sources */,

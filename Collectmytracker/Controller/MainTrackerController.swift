@@ -77,7 +77,7 @@ class MainTrackerController: UITableViewController {
 //        backItem.title = ""
 //        navigationItem.backBarButtonItem = backItem
         
-        let destinationVC = segue.destination as! TrackerDataViewController
+        let destinationVC = segue.destination as! ItemDataViewController
         
         if let indexPath = tableView.indexPathForSelectedRow{
             destinationVC.selectedTracker = tracker[indexPath.row]

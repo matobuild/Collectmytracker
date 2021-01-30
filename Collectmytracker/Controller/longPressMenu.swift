@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension TrackerDataViewController {
+extension ItemDataViewController {
         
     //long press to open menu
      func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
