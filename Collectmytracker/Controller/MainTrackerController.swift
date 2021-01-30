@@ -68,11 +68,23 @@ class MainTrackerController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let destinationVC = segue.destination as! TrackerDataViewController
+//
+//        if let indexPath = tableView.indexPathForSelectedRow{
+//            destinationVC.selectedTracker = tracker[indexPath.row]
+//        }
+//        let backItem = UIBarButtonItem()
+//        backItem.title = ""
+//        navigationItem.backBarButtonItem = backItem
+        
         let destinationVC = segue.destination as! TrackerDataViewController
         
         if let indexPath = tableView.indexPathForSelectedRow{
             destinationVC.selectedTracker = tracker[indexPath.row]
+        }else{
+            destinationVC.selectedTracker = tracker.last
         }
+        
         let backItem = UIBarButtonItem()
         backItem.title = ""
         navigationItem.backBarButtonItem = backItem
@@ -119,7 +131,7 @@ class MainTrackerController: UITableViewController {
             self.tracker.append(newTracker)
             self.saveTrackers()
             
-            
+            self.performSegue(withIdentifier: "goToTrackerData", sender: self)
         }
         alert.addAction(action)
         
