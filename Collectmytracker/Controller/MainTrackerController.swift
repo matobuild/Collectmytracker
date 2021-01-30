@@ -19,6 +19,11 @@ class MainTrackerController: UITableViewController {
                 loadTrackers()
         tableView.separatorStyle = .none
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setToolbarHidden(true, animated: true)
+    }
+    
     
     //MARK: - TableView Datasource Methods
     
@@ -59,6 +64,7 @@ class MainTrackerController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "goToTrackerData", sender: self)
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -14,11 +14,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TrackerDataViewController" customModule="Collectmytracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0B9-uh-Mqn">
-                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LEq-Rz-TOD">
                                     <size key="itemSize" width="60" height="60"/>
@@ -55,38 +55,29 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="o17-nb-38e"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total : 0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ST-pL-zoq">
-                                <rect key="frame" x="259.5" y="809.5" width="134.5" height="32.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="27"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkP-2I-eA3">
-                                <rect key="frame" x="329" y="759.5" width="65" height="30"/>
-                                <state key="normal" title="add ICOn"/>
-                                <connections>
-                                    <action selector="addCountPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eTo-BQ-Ttf"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="0B9-uh-Mqn" firstAttribute="bottom" secondItem="7ST-pL-zoq" secondAttribute="bottom" constant="20" id="KO0-gZ-Pfp"/>
-                            <constraint firstItem="0B9-uh-Mqn" firstAttribute="trailing" secondItem="fkP-2I-eA3" secondAttribute="trailing" constant="20" id="MNv-xG-sxr"/>
-                            <constraint firstItem="fkP-2I-eA3" firstAttribute="leading" relation="lessThanOrEqual" secondItem="0B9-uh-Mqn" secondAttribute="leading" constant="329" id="QjY-cX-oyB"/>
                             <constraint firstItem="0B9-uh-Mqn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="SaJ-QJ-OiZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0B9-uh-Mqn" secondAttribute="trailing" id="Xf1-w3-Dui"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0B9-uh-Mqn" secondAttribute="bottom" id="kYg-in-cJW"/>
-                            <constraint firstItem="0B9-uh-Mqn" firstAttribute="trailing" secondItem="7ST-pL-zoq" secondAttribute="trailing" constant="20" id="mnt-pt-Y1d"/>
                             <constraint firstItem="0B9-uh-Mqn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="o1e-0b-eIb"/>
-                            <constraint firstItem="7ST-pL-zoq" firstAttribute="top" secondItem="fkP-2I-eA3" secondAttribute="bottom" constant="20" id="tVe-nj-7kc"/>
-                            <constraint firstItem="7ST-pL-zoq" firstAttribute="leading" relation="lessThanOrEqual" secondItem="0B9-uh-Mqn" secondAttribute="leading" constant="259.5" id="uBL-Pq-yo1"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" style="done" id="k8k-Yj-xzI"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="HX7-Rq-YO2"/>
+                        <barButtonItem image="plus" catalog="system" id="WMZ-dC-3c5">
+                            <connections>
+                                <action selector="addCountPressed:" destination="BYZ-38-t0r" id="Rnc-cr-0NI"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="AlE-49-v5r"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
-                        <outlet property="countLabel" destination="7ST-pL-zoq" id="d2M-Bj-d1R"/>
+                        <outlet property="counter" destination="k8k-Yj-xzI" id="aQ6-ip-Dvw"/>
                         <outlet property="grid" destination="0B9-uh-Mqn" id="TJa-hx-BVC"/>
                     </connections>
                 </viewController>
@@ -142,6 +133,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TCF-9w-saF">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="hGJ-f6-O18" kind="relationship" relationship="rootViewController" id="sZc-nb-x8K"/>
                     </connections>

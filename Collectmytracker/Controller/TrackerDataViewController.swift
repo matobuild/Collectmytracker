@@ -23,9 +23,11 @@ class TrackerDataViewController: UIViewController {
     
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        navigationItem.hidesBackButton = true
+//                navigationItem.hidesBackButton = true
+        navigationController?.setToolbarHidden(false, animated: true)
         
         let startingItem = Item(context: self.context)
         startingItem.amount = 0
@@ -40,13 +42,15 @@ class TrackerDataViewController: UIViewController {
     }
     
     @IBOutlet weak var grid: UICollectionView!
-    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var counter: UIBarButtonItem!
     
     
     //MARK: - add & delete Items
+    @IBAction func addCountPressed(_ sender: UIBarButtonItem) {
+        addItem()
+    }
     
-    @IBAction func addCountPressed(_ sender: UIButton) {
-        
+    func addItem() {
         let newItem = Item(context: self.context)
         newItem.amount = 1 + itemsArray.last!.amount
         newItem.parentTracker = self.selectedTracker
@@ -54,13 +58,13 @@ class TrackerDataViewController: UIViewController {
         saveItems()
         totalCountingUpdateUI()
     }
-    
+  
     func deleteItem(at indexPath: IndexPath) {
         context.delete(itemsArray[indexPath.item])
         itemsArray.remove(at: indexPath.item)
         totalCountingUpdateUI()
         grid.reloadData()
-       
+        
     }
     
     //MARK: - Model Manipulation Methods
@@ -128,7 +132,7 @@ extension TrackerDataViewController: UICollectionViewDataSource,UICollectionView
         if indexPath.item == itemsArray.count-1{
             cell.myImage.image = #imageLiteral(resourceName: "023-tyrannosaurus rex")
         }else{
-            cell.myImage.image = #imageLiteral(resourceName: "bored-1")
+            cell.myImage.image = #imageLiteral(resourceName: "012-diplodocus")
         }
         //        print("idexpath. item is \(indexPath.item)")
         //        print("items.count is \(items.count)")
@@ -144,11 +148,10 @@ extension TrackerDataViewController: UICollectionViewDataSource,UICollectionView
         print("items.count is \(itemsArray.count)")
         if indexPath.item == (itemsArray.count-1){
             
-  /*
-   should open another view to choose the icon,
-   */
-            
-            addCountPressed(UIButton())
+            /*
+             should open another view to choose the icon,
+             */
+            addItem()
             
         }else{
             //ask for confirmation before remove(need to do)
@@ -159,11 +162,10 @@ extension TrackerDataViewController: UICollectionViewDataSource,UICollectionView
     }
     
     func totalCountingUpdateUI() {
-        countLabel.text = "Total : \(String(itemsArray.count-1))"
-        
+        counter.title = "Total : \(String(itemsArray.count-1))"
     }
-
-   
+    
+    
 }
 
 
