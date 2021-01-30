@@ -16,10 +16,10 @@ class MainTrackerController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                loadTrackers()
+        loadTrackers()
         tableView.separatorStyle = .none
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setToolbarHidden(true, animated: true)
     }
@@ -49,14 +49,14 @@ class MainTrackerController: UITableViewController {
             context.delete(tracker[indexPath.row])
             tracker.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-        
+            
             saveTrackers()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
     
-   
+    
     
     
     
@@ -73,6 +73,9 @@ class MainTrackerController: UITableViewController {
         if let indexPath = tableView.indexPathForSelectedRow{
             destinationVC.selectedTracker = tracker[indexPath.row]
         }
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
         
     }
     
@@ -116,6 +119,7 @@ class MainTrackerController: UITableViewController {
             self.tracker.append(newTracker)
             self.saveTrackers()
             
+            
         }
         alert.addAction(action)
         
@@ -125,7 +129,6 @@ class MainTrackerController: UITableViewController {
         }
         
         present(alert, animated: true, completion: nil)
-        
     }
     
     

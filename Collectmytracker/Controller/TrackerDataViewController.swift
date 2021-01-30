@@ -26,7 +26,7 @@ class TrackerDataViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//                navigationItem.hidesBackButton = true
+        //                navigationItem.hidesBackButton = true
         navigationController?.setToolbarHidden(false, animated: true)
         
         let startingItem = Item(context: self.context)
@@ -58,7 +58,7 @@ class TrackerDataViewController: UIViewController {
         saveItems()
         totalCountingUpdateUI()
     }
-  
+    
     func deleteItem(at indexPath: IndexPath) {
         context.delete(itemsArray[indexPath.item])
         itemsArray.remove(at: indexPath.item)
@@ -102,11 +102,7 @@ class TrackerDataViewController: UIViewController {
         }
         
     }
-    func scrollToBottom() {
-        let lastIndex = IndexPath(item: self.itemsArray.count-1, section: 0)
-        self.grid.scrollToItem(at: lastIndex, at: .centeredVertically, animated: true)
-        
-    }
+    
 }
 
 
@@ -165,6 +161,36 @@ extension TrackerDataViewController: UICollectionViewDataSource,UICollectionView
         counter.title = "Total : \(String(itemsArray.count-1))"
     }
     
+}
+
+//MARK: - hide toolbar while scrolling
+
+extension TrackerDataViewController: UIScrollViewDelegate{
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pan = scrollView.panGestureRecognizer
+        let velocity = pan.velocity (in: scrollView).y
+        if velocity < -5 {
+            //            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            navigationController?.setToolbarHidden(true, animated: true)
+        } else if velocity > 5 {
+            //            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            navigationController?.setToolbarHidden(false, animated: true)
+        }
+        
+        let height = scrollView.frame.size.height
+        let contentYoffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
+        if distanceFromBottom < height {
+            navigationController?.setToolbarHidden(false, animated: true)
+        }
+    }
+    
+    func scrollToBottom() {
+        let lastIndex = IndexPath(item: self.itemsArray.count-1, section: 0)
+        self.grid.scrollToItem(at: lastIndex, at: .centeredVertically, animated: true)
+        
+    }
     
 }
 
