@@ -4,6 +4,7 @@
 //
 //  Created by kittawat phuangsombat on 2021/1/16.
 //
+//<div>Icons made by <a href="https://www.flaticon.com/authors/darius-dan" title="Darius Dan">Darius Dan</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
 
 import UIKit
@@ -30,6 +31,7 @@ class TrackerDataViewController: UIViewController {
         startingItem.amount = 0
         itemsArray.append(startingItem)
         saveItems()
+        totalCountingUpdateUI()
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +43,7 @@ class TrackerDataViewController: UIViewController {
     @IBOutlet weak var countLabel: UILabel!
     
     
-    //MARK: - add new Items
+    //MARK: - add & delete Items
     
     @IBAction func addCountPressed(_ sender: UIButton) {
         
@@ -50,9 +52,16 @@ class TrackerDataViewController: UIViewController {
         newItem.parentTracker = self.selectedTracker
         itemsArray.append(newItem)
         saveItems()
-        totalCountingChange()
+        totalCountingUpdateUI()
     }
     
+    func deleteItem(at indexPath: IndexPath) {
+        context.delete(itemsArray[indexPath.item])
+        itemsArray.remove(at: indexPath.item)
+        totalCountingUpdateUI()
+        grid.reloadData()
+       
+    }
     
     //MARK: - Model Manipulation Methods
     func saveItems() {
@@ -117,9 +126,9 @@ extension TrackerDataViewController: UICollectionViewDataSource,UICollectionView
         // Use the outlet in our custom class to get a reference to the UILabel in the cell
         //        cell.myLabel.text = String(self.items[indexPath.row])// The row value is the same as the index of the desired text within the array.
         if indexPath.item == itemsArray.count-1{
-            cell.myImage.image = #imageLiteral(resourceName: "Logo 500x500 px")
+            cell.myImage.image = #imageLiteral(resourceName: "023-tyrannosaurus rex")
         }else{
-            cell.myImage.image = #imageLiteral(resourceName: "online")
+            cell.myImage.image = #imageLiteral(resourceName: "bored-1")
         }
         //        print("idexpath. item is \(indexPath.item)")
         //        print("items.count is \(items.count)")
@@ -134,21 +143,27 @@ extension TrackerDataViewController: UICollectionViewDataSource,UICollectionView
         print("You selected cell #\(indexPath.item)!")
         print("items.count is \(itemsArray.count)")
         if indexPath.item == (itemsArray.count-1){
+            
+  /*
+   should open another view to choose the icon,
+   */
+            
             addCountPressed(UIButton())
+            
         }else{
             //ask for confirmation before remove(need to do)
-            context.delete(itemsArray[indexPath.item])
-            itemsArray.remove(at: indexPath.item)
-            totalCountingChange()
-            grid.reloadData()
+            deleteItem(at: indexPath)
+            
         }
         saveItems()
     }
     
-    func totalCountingChange() {
+    func totalCountingUpdateUI() {
         countLabel.text = "Total : \(String(itemsArray.count-1))"
         
     }
+
+   
 }
 
 

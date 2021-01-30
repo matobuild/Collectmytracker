@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4833092D25C4F7CA0069A01F /* longPressMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4833092C25C4F7CA0069A01F /* longPressMenu.swift */; };
 		488D8E2F25B43FD700AB19E7 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488D8E2E25B43FD700AB19E7 /* MyCollectionViewCell.swift */; };
 		48C597B425B200720090931B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C597B325B200720090931B /* AppDelegate.swift */; };
 		48C597B625B200720090931B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C597B525B200720090931B /* SceneDelegate.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4833092C25C4F7CA0069A01F /* longPressMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = longPressMenu.swift; sourceTree = "<group>"; };
 		488D8E2E25B43FD700AB19E7 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		48C597B025B200710090931B /* Collectmytracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collectmytracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C597B325B200720090931B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				48C597B725B200720090931B /* TrackerDataViewController.swift */,
+				4833092C25C4F7CA0069A01F /* longPressMenu.swift */,
 				488D8E2E25B43FD700AB19E7 /* MyCollectionViewCell.swift */,
 				48C597D625B204AA0090931B /* MainTrackerController.swift */,
 			);
@@ -182,6 +185,7 @@
 				48C597B825B200720090931B /* TrackerDataViewController.swift in Sources */,
 				48C597BE25B200720090931B /* Collectmytracker.xcdatamodeld in Sources */,
 				488D8E2F25B43FD700AB19E7 /* MyCollectionViewCell.swift in Sources */,
+				4833092D25C4F7CA0069A01F /* longPressMenu.swift in Sources */,
 				48C597D725B204AA0090931B /* MainTrackerController.swift in Sources */,
 				48C597B425B200720090931B /* AppDelegate.swift in Sources */,
 				48C597B625B200720090931B /* SceneDelegate.swift in Sources */,

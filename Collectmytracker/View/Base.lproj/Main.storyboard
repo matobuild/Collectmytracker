@@ -35,12 +35,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="online" translatesAutoresizingMaskIntoConstraints="NO" id="v3m-3Z-dWx">
-                                                    <rect key="frame" x="22.5" y="22.5" width="15" height="15"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="v3m-3Z-dWx" firstAttribute="centerY" secondItem="WVj-rE-dlT" secondAttribute="centerY" id="3mC-HZ-Q7t"/>
-                                                <constraint firstItem="v3m-3Z-dWx" firstAttribute="centerX" secondItem="WVj-rE-dlT" secondAttribute="centerX" id="EOi-pK-HnY"/>
+                                                <constraint firstAttribute="bottom" secondItem="v3m-3Z-dWx" secondAttribute="bottom" id="9uM-mq-YUq"/>
+                                                <constraint firstItem="v3m-3Z-dWx" firstAttribute="leading" secondItem="WVj-rE-dlT" secondAttribute="leading" id="DVi-TN-HcE"/>
+                                                <constraint firstItem="v3m-3Z-dWx" firstAttribute="top" secondItem="WVj-rE-dlT" secondAttribute="top" id="Kb8-Nt-ELZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="v3m-3Z-dWx" secondAttribute="trailing" id="RTA-S2-KfN"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
