@@ -47,7 +47,8 @@ class ItemDataViewController: UIViewController {
     
     //MARK: - add & delete Items
     @IBAction func addCountPressed(_ sender: UIBarButtonItem) {
-        addItem()
+        showPopoverAction(sender)
+//        addItem()
     }
     
     func addItem() {
@@ -65,8 +66,15 @@ class ItemDataViewController: UIViewController {
         totalCountingUpdateUI()
         grid.reloadData()
         
+        transitionAnimation()
     }
-    
+    func transitionAnimation() {
+        let transition = CATransition()
+        transition.type = CATransitionType.fade
+        transition.duration = 1
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        view.layer.add(transition, forKey: nil)
+    }
     //MARK: - Model Manipulation Methods
     func saveItems() {
         
@@ -104,7 +112,36 @@ class ItemDataViewController: UIViewController {
     }
     
 }
+//MARK: - popovermenu for icon choice
 
+extension ItemDataViewController: UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+    
+    func showPopoverAction(_ sender: UIBarButtonItem){
+        guard let imageDisplayViewController = storyboard?.instantiateViewController(withIdentifier: "ImageDisplayViewController") as? ImageDisplayViewController else {
+            return
+        }
+        imageDisplayViewController.preferredContentSize = CGSize(width: 500, height: 130)
+        imageDisplayViewController.modalPresentationStyle = .popover
+        let popover: UIPopoverPresentationController = imageDisplayViewController.popoverPresentationController!
+        popover.delegate = self
+        popover.sourceView = self.view
+        popover.barButtonItem = sender
+        imageDisplayViewController.selectionDelegate = self
+        present(imageDisplayViewController, animated: true, completion:nil)
+    }
+    
+}
+extension ItemDataViewController:IconSelectionDelegate{
+    func didTapIconChoice(stringIconNameChosen: String) {
+        print(stringIconNameChosen)
+        addItem()
+    }
+    
+}
 
 //MARK: - creating the grid
 extension ItemDataViewController: UICollectionViewDataSource,UICollectionViewDelegate{
@@ -143,12 +180,7 @@ extension ItemDataViewController: UICollectionViewDataSource,UICollectionViewDel
         print("You selected cell #\(indexPath.item)!")
         print("items.count is \(itemsArray.count)")
         if indexPath.item == (itemsArray.count-1){
-            
-            /*
-             should open another view to choose the icon,
-             */
             addItem()
-            
         }else{
             //ask for confirmation before remove(need to do)
             deleteItem(at: indexPath)
