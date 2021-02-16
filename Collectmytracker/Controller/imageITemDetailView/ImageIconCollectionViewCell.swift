@@ -7,8 +7,8 @@
 
 import UIKit
 class ImageIconCollectionViewCell: UICollectionViewCell {
-
-    @IBOutlet weak var myIcon: UIImageView!
+  
+  @IBOutlet weak var myIcon: UIImageView!
 }
 
 
