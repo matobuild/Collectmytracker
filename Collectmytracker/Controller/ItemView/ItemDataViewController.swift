@@ -23,19 +23,32 @@ class ItemDataViewController: UIViewController {
     
     let reuseIdentifier = "cell" // also enter this string as the cell identifier in the storyboard
     
+    var defaultIcon = "023-tyrannosaurus rex"
     
-    override func viewDidLoad() {
+  override func viewDidLoad() {
         super.viewDidLoad()
         //                navigationItem.hidesBackButton = true
         navigationController?.setToolbarHidden(false, animated: true)
-        
-        let startingItem = Item(context: self.context)
-        startingItem.amount = 0
-        itemsArray.append(startingItem)
-        saveItems()
-        totalCountingUpdateUI()
-        
+    
+    if itemsArray.count == 0{
+      initialiseItemsArray()
+    }else{
+      reloadData()
+      totalCountingUpdateUI()
+      
+      let beforeLastPosition = itemsArray.count-1
+      defaultIcon = itemsArray[beforeLastPosition].iconName ?? defaultIcon
     }
+      
+    }
+   func initialiseItemsArray() {
+    let startingItem = Item(context: self.context)
+    startingItem.iconName = defaultIcon
+    startingItem.parentTracker = selectedTracker
+    itemsArray.append(startingItem)
+    saveItems()
+    totalCountingUpdateUI()
+  }
     override func viewWillAppear(_ animated: Bool) {
         title = selectedTracker!.name
         
@@ -48,16 +61,17 @@ class ItemDataViewController: UIViewController {
     //MARK: - add & delete Items
     @IBAction func addCountPressed(_ sender: UIBarButtonItem) {
         showPopoverAction(sender)
-//        addItem()
     }
     
-    func addItem() {
+    func addItem(icon: String) {
         let newItem = Item(context: self.context)
-        newItem.amount = 1 + itemsArray.last!.amount
-        newItem.parentTracker = self.selectedTracker
+        newItem.iconName = icon
+        newItem.parentTracker = selectedTracker
         itemsArray.append(newItem)
         saveItems()
         totalCountingUpdateUI()
+  
+//        transitionAnimation()
     }
     
     func deleteItem(at indexPath: IndexPath) {
@@ -83,10 +97,7 @@ class ItemDataViewController: UIViewController {
         } catch {
             print("Error saving context \(error)")
         }
-        DispatchQueue.main.async {
-            self.grid.reloadData()
-            self.scrollToBottom()
-        }
+        reloadData()
         
     }
     func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil){
@@ -104,11 +115,14 @@ class ItemDataViewController: UIViewController {
         }catch{
             print("Error fetching data from context \(error)")
         }
+        reloadData()
+    }
+    
+    func reloadData(){
         DispatchQueue.main.async {
             self.grid.reloadData()
             self.scrollToBottom()
         }
-        
     }
     
 }
@@ -120,6 +134,7 @@ extension ItemDataViewController: UIPopoverPresentationControllerDelegate {
         return .none
     }
     
+  //pop over for adding choosing icon at the bottom
     func showPopoverAction(_ sender: UIBarButtonItem){
         guard let imageDisplayViewController = storyboard?.instantiateViewController(withIdentifier: "ImageDisplayViewController") as? ImageDisplayViewController else {
             return
@@ -133,14 +148,31 @@ extension ItemDataViewController: UIPopoverPresentationControllerDelegate {
         imageDisplayViewController.selectionDelegate = self
         present(imageDisplayViewController, animated: true, completion:nil)
     }
-    
+  func prepareForPopoverPresentation(_ popoverPresentationController: UIPopoverPresentationController) {
+    popoverPresentationController.containerView?.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+  }
 }
 extension ItemDataViewController:IconSelectionDelegate{
-    func didTapIconChoice(stringIconNameChosen: String) {
-        print(stringIconNameChosen)
-        addItem()
+  func editTHeTapIconImage(stringIconNameChosen: String, atIndex: IndexPath) {
+    //edit the selected image
+    let position = atIndex.item
+    itemsArray[position].iconName = stringIconNameChosen
+    saveItems()
+  }
+  
+    func didTapToIncreaseWithSeletectedImage(stringIconNameChosen: String) {
+//edit the last image icon before the last array
+      editIconBeforeLastItem(icon: stringIconNameChosen)
+        addItem(icon: stringIconNameChosen)
+        defaultIcon = stringIconNameChosen
+      print(itemsArray)
     }
     
+  func editIconBeforeLastItem(icon: String){
+    let beforeLastPosition = itemsArray.count-1
+    itemsArray[beforeLastPosition].iconName = icon
+    saveItems()
+  }
 }
 
 //MARK: - creating the grid
@@ -148,27 +180,24 @@ extension ItemDataViewController: UICollectionViewDataSource,UICollectionViewDel
     
     // MARK: - UICollectionViewDataSource protocol
     
-    // tell the collection view how many cells to make
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("THE AMOUNT OF ITEMS IS \(itemsArray.count)")
+        print("THE AMOUNT OF ITEMS IS \(itemsArray.count-1)")
         return itemsArray.count
     }
     
-    // make a cell for each cell index path
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        // get a reference to our storyboard cell
+       
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MyCollectionViewCell
         
-        // Use the outlet in our custom class to get a reference to the UILabel in the cell
-        //        cell.myLabel.text = String(self.items[indexPath.row])// The row value is the same as the index of the desired text within the array.
         if indexPath.item == itemsArray.count-1{
-            cell.myImage.image = #imageLiteral(resourceName: "023-tyrannosaurus rex")
+            cell.myImage.image = UIImage(systemName: "hand.point.up")
         }else{
-            cell.myImage.image = #imageLiteral(resourceName: "012-diplodocus")
+          if let iconName = self.itemsArray[indexPath.item].iconName{
+            cell.myImage.image = UIImage(named: iconName)
+          }
+            
+            
         }
-        //        print("idexpath. item is \(indexPath.item)")
-        //        print("items.count is \(items.count)")
         return cell
     }
     
@@ -180,10 +209,19 @@ extension ItemDataViewController: UICollectionViewDataSource,UICollectionViewDel
         print("You selected cell #\(indexPath.item)!")
         print("items.count is \(itemsArray.count)")
         if indexPath.item == (itemsArray.count-1){
-            addItem()
+            addItem(icon: defaultIcon)
+            print(itemsArray)
         }else{
-            //ask for confirmation before remove(need to do)
-            deleteItem(at: indexPath)
+          let confirmationToDelete = UIAlertController(title: "Are you sure wish to delete this icon?", message: "", preferredStyle: .actionSheet)
+          let delete = UIAlertAction(title: "Delete", style: .destructive) { (delete) in
+            self.deleteItem(at: indexPath)
+          }
+          let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+          
+          confirmationToDelete.addAction(delete)
+          confirmationToDelete.addAction(cancel)
+          
+          present(confirmationToDelete, animated: true, completion: nil)
             
         }
         saveItems()

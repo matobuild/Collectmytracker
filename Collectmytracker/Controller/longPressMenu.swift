@@ -14,35 +14,49 @@ extension ItemDataViewController {
         
     //long press to open menu
      func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+      if indexPath.item == itemsArray.count-1{
+        return nil
+      }else{
         return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
-            return self.menuForItems(at: indexPath)
+          return self.menuForItems(at: indexPath, location: collectionView)
         }
+      }
     }
    
-    func menuForItems(at indexPath: IndexPath) -> UIMenu {
+  func menuForItems(at indexPath: IndexPath, location atView: UICollectionView) -> UIMenu {
 
-        // Create a UIAction for sharing
-        let share = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { action in
-            // Show system share sheet
+        // Create an action for editing icon
+        let changeImage = UIAction(title: "Change Image", image: UIImage(systemName: "square.and.pencil")) { edit in
+          self.showEditPopoverAction(indexPath, atView)
         }
 
-        // Create an action for renaming
-        let rename = UIAction(title: "Rename", image: UIImage(systemName: "square.and.pencil")) { action in
-            // Perform renaming
-        }
-
-        // Here we specify the "destructive" attribute to show that it’s destructive in nature
         let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
             self.deleteItem(at: indexPath)
-            
         }
 
         // Create and return a UIMenu with all of the actions as children
-        return UIMenu(title: "", children: [share, rename, delete])
-    }
+        return UIMenu(title: "", children: [changeImage, delete])
+      }
+  
+  //pop over for editing icon image
+  func showEditPopoverAction(_ indexPath: IndexPath, _ collectionView: UICollectionView){
+      guard let imageDisplayViewController = storyboard?.instantiateViewController(withIdentifier: "ImageDisplayViewController") as? ImageDisplayViewController else {
+          return
+      }
+      imageDisplayViewController.preferredContentSize = CGSize(width: 500, height: 130)
+      imageDisplayViewController.modalPresentationStyle = .popover
+      let popover: UIPopoverPresentationController = imageDisplayViewController.popoverPresentationController!
+      popover.delegate = self
+    popover.sourceView = collectionView.cellForItem(at: indexPath)
+      imageDisplayViewController.selectionDelegate = self
+    
+//pass the location where it is selected
+    imageDisplayViewController.selectedIndexToEdit = indexPath
+      present(imageDisplayViewController, animated: true, completion:nil)
+  }
 }
 
-//MARK: - for tracer menu
+//MARK: - for tracker menu
 
 extension MainTrackerController{
     override func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {

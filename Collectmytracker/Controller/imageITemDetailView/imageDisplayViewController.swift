@@ -8,11 +8,12 @@
 import UIKit
 
 protocol IconSelectionDelegate {
-    func didTapIconChoice(stringIconNameChosen : String)
+    func didTapToIncreaseWithSeletectedImage(stringIconNameChosen: String)
+  func editTHeTapIconImage(stringIconNameChosen: String,atIndex :IndexPath)
 }
 
 class ImageDisplayViewController: UIViewController {
-    
+  var selectedIndexToEdit: IndexPath = []
     var selectionDelegate : IconSelectionDelegate!
 
     private let reuseIdentifierImageCell = "imageCell"
@@ -70,11 +71,14 @@ extension ImageDisplayViewController: UICollectionViewDataSource, UICollectionVi
         cell.myIcon.image = UIImage(named: self.iconsChoice[indexPath.row])
         return cell
     }
+  
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+      if selectedIndexToEdit != []{
+        selectionDelegate.editTHeTapIconImage(stringIconNameChosen: iconsChoice[indexPath.item], atIndex: selectedIndexToEdit)
+      }else{
         //put the string name inside the delegate
-        selectionDelegate.didTapIconChoice(stringIconNameChosen: iconsChoice[indexPath.item])
-        
-//        iconsChoice[indexPath.item])
+        selectionDelegate.didTapToIncreaseWithSeletectedImage(stringIconNameChosen: iconsChoice[indexPath.item])
+      }
         dismiss(animated: true, completion:nil)
     }
     

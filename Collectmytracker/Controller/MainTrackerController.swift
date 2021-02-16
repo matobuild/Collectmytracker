@@ -5,7 +5,6 @@
 //  Created by kittawat phuangsombat on 2021/1/16.
 //
 
-import Foundation
 import UIKit
 import CoreData
 
@@ -127,7 +126,10 @@ class MainTrackerController: UITableViewController {
             
             self.performSegue(withIdentifier: "goToTrackerData", sender: self)
         }
+      let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+      
         alert.addAction(action)
+      alert.addAction(cancel)
         
         alert.addTextField { (field) in
             textField = field
