@@ -190,7 +190,9 @@ extension ItemDataViewController: UICollectionViewDataSource,UICollectionViewDel
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MyCollectionViewCell
     
     if indexPath.item == itemsArray.count-1{
-      cell.myImage.image = UIImage(systemName: "hand.point.up")
+      let image = UIImage(systemName: "plus.circle")
+      cell.myImage.image = image?.withTintColor(.red, renderingMode: .alwaysOriginal)
+      
     }else{
       if let iconName = self.itemsArray[indexPath.item].iconName{
         cell.myImage.image = UIImage(named: iconName)
