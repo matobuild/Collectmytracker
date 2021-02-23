@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4821B40425C68FED005E2B0F /* imageDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4821B40325C68FED005E2B0F /* imageDisplayViewController.swift */; };
-		4833092D25C4F7CA0069A01F /* LongPressMenu2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4833092C25C4F7CA0069A01F /* LongPressMenu2.swift */; };
+		4833092D25C4F7CA0069A01F /* LongPressMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4833092C25C4F7CA0069A01F /* LongPressMenu.swift */; };
 		488D8E2F25B43FD700AB19E7 /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488D8E2E25B43FD700AB19E7 /* MyCollectionViewCell.swift */; };
 		488EEBA125CE322E004E173E /* ImageIconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488EEBA025CE322E004E173E /* ImageIconCollectionViewCell.swift */; };
 		48C597B425B200720090931B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C597B325B200720090931B /* AppDelegate.swift */; };
@@ -23,7 +23,7 @@
 
 /* Begin PBXFileReference section */
 		4821B40325C68FED005E2B0F /* imageDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imageDisplayViewController.swift; sourceTree = "<group>"; };
-		4833092C25C4F7CA0069A01F /* LongPressMenu2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongPressMenu2.swift; sourceTree = "<group>"; };
+		4833092C25C4F7CA0069A01F /* LongPressMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongPressMenu.swift; sourceTree = "<group>"; };
 		488D8E2E25B43FD700AB19E7 /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		488EEBA025CE322E004E173E /* ImageIconCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageIconCollectionViewCell.swift; sourceTree = "<group>"; };
 		48C597B025B200710090931B /* Collectmytracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collectmytracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,7 +111,7 @@
 				488EEBA425CE3236004E173E /* imageITemDetailView */,
 				488EEB9F25CE31DA004E173E /* ItemView */,
 				48C597D625B204AA0090931B /* MainTrackerController.swift */,
-				4833092C25C4F7CA0069A01F /* LongPressMenu2.swift */,
+				4833092C25C4F7CA0069A01F /* LongPressMenu.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -208,7 +208,7 @@
 				48C597BE25B200720090931B /* Collectmytracker.xcdatamodeld in Sources */,
 				488EEBA125CE322E004E173E /* ImageIconCollectionViewCell.swift in Sources */,
 				488D8E2F25B43FD700AB19E7 /* MyCollectionViewCell.swift in Sources */,
-				4833092D25C4F7CA0069A01F /* LongPressMenu2.swift in Sources */,
+				4833092D25C4F7CA0069A01F /* LongPressMenu.swift in Sources */,
 				48C597D725B204AA0090931B /* MainTrackerController.swift in Sources */,
 				48C597B425B200720090931B /* AppDelegate.swift in Sources */,
 				4821B40425C68FED005E2B0F /* imageDisplayViewController.swift in Sources */,
